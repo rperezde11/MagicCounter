@@ -23,7 +23,8 @@
             android:name=".MainGame"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main_game"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

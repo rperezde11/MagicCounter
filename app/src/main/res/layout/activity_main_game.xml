@@ -23,20 +23,21 @@
             android:layout_weight=".50">
 
             <ImageView
+                android:id="@+id/img_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/red"
-                android:id="@+id/button" />
+                android:adjustViewBounds="false"
+                android:scaleType="fitXY"
+                android:src="@drawable/red" />
 
             <TextView
+                android:id="@+id/score_plyr_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="0"
-                android:textSize="85dp"
+                android:textSize="120dp"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:id="@+id/textView"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
@@ -47,20 +48,21 @@
             android:layout_weight=".50">
 
             <ImageView
+                android:id="@+id/img_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/green"
-                android:id="@+id/button2" />
+                android:adjustViewBounds="false"
+                android:scaleType="fitXY"
+                android:src="@drawable/green" />
 
             <TextView
+                android:id="@+id/score_plyr_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="0"
-                android:textSize="85dp"
+                android:textSize="120dp"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:id="@+id/textView2"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
 
