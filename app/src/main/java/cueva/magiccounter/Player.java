@@ -1,36 +1,41 @@
 package cueva.magiccounter;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Player {
 
     private int id;
     private int points;
-    private List<Integer> listImgs;
+    private List<Image> listImgs;
 
     private CustomEvents.PointEvents listener;
 
     public Player(int id)
     {
         this.id = id;
-        points = Const.DEF_NUM_POINTS;
+        this.points = Const.DEF_NUM_POINTS;
+
         listImgs = new ArrayList<>();
     }
 
 
-    public void add()
+    public int add()
     {
-        this.points++;
-
-        firePoints();
+        return ++(this.points);
     }
 
-    public void rem()
+    public int rem()
     {
-        this.points--;
+        return --(this.points);
+    }
 
-        firePoints();
+    public int setDefaultPoints()
+    {
+        return (this.points = Const.DEF_NUM_POINTS);
     }
 
 
@@ -38,33 +43,71 @@ public class Player {
      * Adds the image on drawable.
      * @param image is an int representing the id of a drawable image.
      */
-    public boolean addImage(int image)
+    public boolean addImage(Image image)
     {
-        if(!listImgs.contains(image) && !(listImgs.size() >= Const.MAX_COLORS))
+        if(!listImgs.contains(image) && !(listImgs.size() >= Const.MAX_COLORS) && !hasType(image))
             return listImgs.add(image);
 
         return false;
+    }
+
+
+    public boolean addImage(Info info, String type, String theme)
+    {
+        return addImage(info.getImage(type,theme));
     }
 
     /**
      * Removes the image based on drawable id.
      * @param image is an int representing the id of a drawable image.
      */
-    public boolean rmvImage(int image)
+    public boolean rmvImage(Image image)
     {
-        if(listImgs.contains(image))
-            return listImgs.remove((Object) image);
+        if(listImgs.contains(image) && listImgs.size() > 0)
+            return listImgs.remove(image);
 
         return false;
     }
 
-
-    private void firePoints() throws NullPointerException
+    public List<Integer> idImgs()
     {
-        if (!listener.equals(null))
-            listener.OnChangedPoints(this.id);
-        else
-            throw new NullPointerException();
+        List<Integer> ids = new ArrayList<>();
+
+        for (Image image: listImgs) {
+            ids.add(image.getId());
+        }
+
+        return ids;
+    }
+
+
+    /*********************
+     *      PRIVATE
+     *********************/
+
+    private boolean hasImage(Image img)
+    {
+        for(Image image : listImgs)
+        {
+            if(img == image) { return true; }
+        }
+
+        return false;
+    }
+
+    private boolean hasType(String type)
+    {
+        for(Image image : listImgs)
+        {
+            if(image.getType().equals(type)) { return true; }
+        }
+
+        return false;
+    }
+
+    private boolean hasType(Image image)
+    {
+        return hasType(image.getType());
     }
 
     /*********************
@@ -76,13 +119,5 @@ public class Player {
         return this.points;
     }
 
-    public int getId()
-    {
-        return this.id;
-    }
-
-    public void setOnPointsChangedListener(CustomEvents.PointEvents listener)
-    {
-        this.listener = listener;
-    }
+    public int getId() { return this.id; }
 }

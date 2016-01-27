@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    android:background="#cc0f0f0f">
+
+
+    <ImageButton
+        android:layout_weight="0.2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/ico_w"
+        android:layout_marginRight="0dp"
+        android:id="@+id/btn_white" />
+
+    <ImageButton
+        android:layout_weight="0.2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/ico_g"
+        android:layout_marginRight="0dp"
+        android:id="@+id/btn_green" />
+
+    <ImageButton
+        android:layout_weight="0.2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/ico_r"
+        android:layout_marginRight="0dp"
+        android:id="@+id/btn_red" />
+
+    <ImageButton
+        android:layout_weight="0.2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/ico_u"
+        android:layout_marginRight="0dp"
+        android:id="@+id/btn_blue" />
+
+    <ImageButton
+        android:layout_weight="0.2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/ico_b"
+        android:layout_marginRight="0dp"
+        android:id="@+id/btn_black" />
+
+
+</LinearLayout>

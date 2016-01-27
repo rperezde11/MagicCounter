@@ -24,8 +24,6 @@ public class Splash extends AppCompatActivity
 {
 
     public static Timer timer;
-    private final int INTRO_DELAY = 2000; // Time the intro lasts in milliseconds.
-    private final int LOGO_N_FRAMES = 20; // Time the intro lasts in milliseconds.
 
 
     protected static ImageView img_logo;
@@ -43,8 +41,8 @@ public class Splash extends AppCompatActivity
 
         init();
 
-        timer.scheduleAtFixedRate(new ModifyLogo(), 0, LOGO_N_FRAMES);
-        new Handler().postDelayed(new Task() , INTRO_DELAY);
+        timer.scheduleAtFixedRate(new ModifyLogo(), 0, Const.SPLASH_LOGO_N_FRAMES);
+        new Handler().postDelayed(new Task() , Const.SPLASH_INTRO_DELAY);
     }
 
 
@@ -71,7 +69,7 @@ public class Splash extends AppCompatActivity
         @Override
         public void run()
         {
-            Intent intent = new Intent(Splash.this, MainGame.class);
+            Intent intent = new Intent(Splash.this, MainActivity.class);
             startActivity(intent);
             Splash.timer.cancel();
             finish();
@@ -80,21 +78,31 @@ public class Splash extends AppCompatActivity
 
     class ModifyLogo extends TimerTask
     {
-        private int counter = 0;
-        private float initial_sc = 0.05f;
-        private final float DIFF = 0.01f;
+        private float scale;
+        private boolean up = true;
+
+        public ModifyLogo()
+        {
+            scale = Const.SPLASH_MIN_SCALE;;
+        }
 
         @Override
         public void run()
         {
-            float actual_scale_X = counter==0 ?  initial_sc : Splash.img_logo.getScaleX();
-            float actual_scale_Y = counter==0 ?  initial_sc : Splash.img_logo.getScaleY();
+            setScales(scale+Const.STEP);
 
-            Splash.img_logo.setScaleX(actual_scale_X + DIFF);
-            Splash.img_logo.setScaleY(actual_scale_Y + DIFF);
+            if( (scale+Const.STEP) < Const.SPLASH_MIN_SCALE ||
+                    (scale+Const.STEP) > Const.SPLASH_MAX_SCALE )
+            { up ^= true; }
 
-            initial_sc += DIFF;
-            counter++;
+            scale += up ? +Const.STEP : -Const.STEP;
+
+        }
+
+        public void setScales(float scale)
+        {
+            Splash.img_logo.setScaleX(scale);
+            Splash.img_logo.setScaleY(scale);
         }
     }
 
